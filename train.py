@@ -10,6 +10,18 @@ from sklearn.tree import DecisionTreeRegressor
 # Exercise 1: Linear Regression
 # -----------------------------
 
+"""
+This section of code fits a linear regression model using scikit learn. 
+It reads in the dataset, prepares the data, trains the model, and
+saves it in a pickle file.
+
+Inputs:
+    Dataset from csv
+
+Outputs:
+    pickle file containing the linear model
+"""
+
 # Step 1: Load the coffee dataset
 url = "https://raw.githubusercontent.com/leontoddjohnson/datasets/refs/heads/main/data/coffee_analysis.csv"
 df = pd.read_csv(url)
@@ -27,7 +39,7 @@ lr.fit(X1, y)
 with open("model_1.pickle", "wb") as f:
     pickle.dump(lr, f)
 
-print("✅ Linear Regression model saved as model_1.pickle")
+print("Linear Regression model saved as model_1.pickle")
 
 # -----------------------------
 # Exercise 2: Decision Tree Regressor
@@ -36,8 +48,13 @@ print("✅ Linear Regression model saved as model_1.pickle")
 # Step 1: Define a function to convert roast type to numeric category
 def roast_category(roast):
     """
-    Maps roast string labels to numeric codes.
-    Missing values (NaN) are returned as np.nan.
+    This function maps the roast type into a numeric category
+
+    Inputs:
+        roast: A roast value from the full dataset
+
+    Returns:
+        The mapped numeric version of the roast category
     """
     if pd.isna(roast):
         return np.nan
@@ -50,6 +67,11 @@ def roast_category(roast):
         "Dark": 4
     }
     return mapping.get(roast, np.nan)  # Return NaN if roast type not found
+
+"""
+This section of code applies the mapping function to the roast column, then creates
+the decision tree regressor. Then, it saves the model in a pickle file
+"""
 
 # Step 2: Apply the mapping function to create a numeric column
 df["roast_cat"] = df["roast"].apply(roast_category)
