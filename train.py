@@ -89,4 +89,4 @@ dtr.fit(X2, y)
 with open("model_2.pickle", "wb") as f:
     pickle.dump(dtr, f)
 
-print("✅ Decision Tree Regressor model saved as model_2.pickle")
+print("Decision Tree Regressor model saved as model_2.pickle")
